@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProcessStepStatuesTable extends Migration
+class CreateProcessStepStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateProcessStepStatuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('process_step_statues', function (Blueprint $table) {
+        Schema::create('process_step_statuses', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('process_step_id');
             $table->tinyInteger('status_code');
@@ -33,6 +33,6 @@ class CreateProcessStepStatuesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('process_step_statues');
+        Schema::dropIfExists('process_step_statuses');
     }
 }

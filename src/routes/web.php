@@ -6,7 +6,11 @@
  * Time: 4:32 PM
  */
 Route::get('/hello',
-    function (){
-    dd('asd');
+    function (\Illuminate\Http\Request $request){
+            return $request->process_alias  ;
     }
     );
+
+Route::get('/start',function (){
+    return \Alireza1992\ProcessManager\Events::log('stock-sheet-request','create-request','test','1','1','1');
+});
