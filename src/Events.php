@@ -16,7 +16,7 @@ use App\ProcessStepStatus;
 
 class Events
 {
-    public static function Log($processAlias , $stepAlias , $stepStatusAlias , $objectId , $userId)
+    public static function log($processAlias , $stepAlias , $stepStatusAlias , $objectId , $userId)
     {
 
         $process = self::findProcess($processAlias);
@@ -28,7 +28,7 @@ class Events
             'object_id' => $objectId,
             'user_id' => $userId
         ]);
-        dd($insertEvent);
+       return 'done';
 
 
     }
