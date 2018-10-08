@@ -9,8 +9,8 @@
 namespace Alireza1992\ProcessManager;
 
 
-use Carbon\Laravel\ServiceProvider;
-use function foo\func;
+
+use Illuminate\Support\ServiceProvider;
 
 class ProcessManagerProvider extends ServiceProvider
 {
@@ -25,7 +25,7 @@ class ProcessManagerProvider extends ServiceProvider
     {
 
         $this->app->bind('EventLogger',function (){
-           return new EventLogger();
+           return new Events();
         });
 
     }
