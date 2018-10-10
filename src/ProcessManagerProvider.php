@@ -17,9 +17,35 @@ class ProcessManagerProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
+        $routeConfig = [
+            'namespace' => 'Alireza1992\Processmanager\Controllers',
+            'prefix' => 'admin/process-managers',
+            'middleware' => ['web', 'admin'],
+        ];
+        $this->getRouter()->group($routeConfig, function($router) {
+//            $router->resource('process', 'ProcessController');
+            $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
+
+        });
         $this->loadMigrationsFrom(__DIR__.'/../migrations');
+        $this->loadViewsFrom(__DIR__.'/views', 'process-managers');
+        // Publish a config file
+        $configPath = __DIR__.'/../config/process-manager.php';
+        $this->publishes([
+            $configPath => config_path('process-manager.php'),
+        ], 'config');
     }
+
+    /**
+     * Get the active router.
+     *
+     * @return Router
+     */
+    protected function getRouter()
+    {
+        return $this->app['router'];
+    }
+
 
     public function register()
     {
