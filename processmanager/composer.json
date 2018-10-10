@@ -1,0 +1,28 @@
+{
+  "name": "alireza1992/processmanager",
+  "description": "This Package helps developers to work with Jalali Datetime class for Laravel Framework PHP",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alireza Amrollahi",
+      "email": "alirezaamrollahi70@gmail.com"
+    }
+  ],
+  "require": {},
+  "minimum-stability": "dev",
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Alireza1992\\Processmanager\\ProcessManagerProvider"
+      ],
+      "aliases": {
+        "Events": "Alireza1992\\Processmanager\\Facades\\EventLogger"
+      }
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Alireza1992\\Processmanager\\": "src/"
+    }
+  }
+}
