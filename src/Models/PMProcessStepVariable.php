@@ -12,21 +12,16 @@ namespace Alireza1992\ProcessManager\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PMProcess extends Model
+class PMProcessStepVariable extends Model
 {
-    protected $table = 'processes';
-    protected $fillable = ['name', 'alias', 'model'];
+
     use SoftDeletes;
+    protected $table = 'process_step_variables';
+    protected $fillable = ['process_step_id', 'name', 'alias', 'desc', 'type'];
 
-
-    public function steps()
+    public function process_step()
     {
-        return $this->hasMany(PMProcessStep::class, 'process_id', 'id');
-    }
-
-    public function getPluck()
-    {
-        return self::pluck('model', 'id');
+        return $this->belongsTo(PMProcessStep::class, 'process_step_id');
     }
 
     public function getAll()
@@ -54,7 +49,7 @@ class PMProcess extends Model
     public function paginate($data = null)
     {
         return self::when($data->filled('query'), function ($query) use ($data) {
-            return $query->where('name', 'LIKE', "%{$data['query']}%");
+            return $query->where('status_name', 'LIKE', "%{$data['query']}%");
         })->when($data->filled('sort'), function ($query) use ($data) {
             return $query->orderBy('id', $data['sort']);
         })->unless($data->filled('sort'), function ($query) use ($data) {

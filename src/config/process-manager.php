@@ -13,6 +13,9 @@ return [
         'parsley' => 'content',
     ],
 
+    'resource-views' => base_path('resources/views/admin/process-managers'),
+
+
     'auth' => 'admin',
     'route' =>'.process-managers',
 ];

@@ -9,7 +9,7 @@
 namespace Alireza1992\ProcessManager;
 
 
-
+use Alireza1992\ProcessManager\Models\PMProcess;
 use Illuminate\Support\ServiceProvider;
 
 class ProcessManagerProvider extends ServiceProvider
@@ -17,23 +17,36 @@ class ProcessManagerProvider extends ServiceProvider
 
     public function boot()
     {
+        include __DIR__ . '/Models/PMProcess.php';
+        include __DIR__ . '/Models/PMProcessStep.php';
+        include __DIR__ . '/Models/PMProcessStepStatus.php';
+        include __DIR__ . '/Models/PMProcessStepVariable.php';
         $routeConfig = [
             'namespace' => 'Alireza1992\Processmanager\Controllers',
             'prefix' => 'admin/process-managers',
             'middleware' => ['web', 'admin'],
         ];
-        $this->getRouter()->group($routeConfig, function($router) {
+        $this->getRouter()->group($routeConfig, function ($router) {
 //            $router->resource('process', 'ProcessController');
             $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
 
         });
-        $this->loadMigrationsFrom(__DIR__.'/../migrations');
-        $this->loadViewsFrom(__DIR__.'/views', 'process-managers');
+        $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+
         // Publish a config file
-        $configPath = __DIR__.'/../config/process-manager.php';
+        $configPath = __DIR__ . '/config/process-manager.php';
         $this->publishes([
             $configPath => config_path('process-manager.php'),
         ], 'config');
+
+        $viewPath = __DIR__ . '/views';
+        $this->loadViewsFrom($viewPath, 'processmanager');
+        //Publish views
+        $this->publishes([
+            $viewPath => config('process-manager.resource-views'),
+        ], 'views');
+
+
     }
 
     /**
@@ -50,8 +63,12 @@ class ProcessManagerProvider extends ServiceProvider
     public function register()
     {
 
-        $this->app->bind('EventLogger',function (){
-           return new Events();
+        $this->app->bind('EventLogger', function () {
+            return new Events();
+        });
+
+        $this->app->bind('PMProcess', function () {
+            return new PMProcess();
         });
 
     }

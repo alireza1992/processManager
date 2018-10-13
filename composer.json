@@ -8,7 +8,9 @@
       "email": "alirezaamrollahi70@gmail.com"
     }
   ],
-  "require": {},
+  "require": {
+    "illuminate/support": "~5"
+  },
   "minimum-stability": "dev",
   "extra": {
     "laravel": {
@@ -21,6 +23,9 @@
     }
   },
   "autoload": {
+    "classmap": [
+      "Requests"
+    ],
     "psr-4": {
       "Alireza1992\\Processmanager\\": "src/"
     }

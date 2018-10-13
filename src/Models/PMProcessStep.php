@@ -9,24 +9,47 @@
 namespace Alireza1992\ProcessManager\Models;
 
 
+use App\Models\Group;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PMProcess extends Model
+class PMProcessStep extends Model
 {
-    protected $table = 'processes';
-    protected $fillable = ['name', 'alias', 'model'];
+
     use SoftDeletes;
+    protected $table = 'process_steps';
+    protected $fillable = ['process_id', 'name', 'priority', 'alias', 'presenter_group_id', 'group_id'];
 
-
-    public function steps()
+    public function process()
     {
-        return $this->hasMany(PMProcessStep::class, 'process_id', 'id');
+        return $this->belongsTo(PMProcess::class, 'process_id');
     }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class, 'presenter_group_id');
+    }
+
+
+    public function statuses()
+    {
+        return $this->hasMany(PMProcessStepStatus::class, 'process_step_id', 'id');
+    }
+
+    public function variables()
+    {
+        return $this->hasMany(PMProcessStepVariable::class, 'process_step_id', 'id');
+    }
+
+    public function getGroupModeNameAttribute()
+    {
+        return $this->group_mode == '0' ? 'ادمین' : 'کاربر';
+    }
+
 
     public function getPluck()
     {
-        return self::pluck('model', 'id');
+        return self::pluck('name', 'id');
     }
 
     public function getAll()
