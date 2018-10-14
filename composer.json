@@ -23,9 +23,6 @@
     }
   },
   "autoload": {
-    "classmap": [
-      "Requests"
-    ],
     "psr-4": {
       "Alireza1992\\Processmanager\\": "src/"
     }

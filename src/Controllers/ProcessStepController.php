@@ -53,7 +53,7 @@ class ProcessStepController extends Controller
     public function edit($id)
     {
         $process_step = $this->processStepServices->find($id);
-        $processes = $this->processServices->get();
+        $processes = $this->processServices->getPluck();
         $groups = $this->groups->pluck('name', 'id');
         return view('processmanager::process-step.edit', compact('process_step', 'groups', 'processes'));
     }

@@ -22,6 +22,7 @@
 
                     <td>{{($process_steps->currentPage() - 1 ) * ($process_steps->perPage() ) + $loop->iteration}}</td>
                     <td>{!! $item->name !!}</td>
+                    <td>{!! $item->process->name !!}</td>
                     <td>{!! $item->alias !!}</td>
                     <td>{!! $item->group->name !!}</td>
                     <td>{!! $item->groupModeName !!}</td>

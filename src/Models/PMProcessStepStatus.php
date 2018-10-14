@@ -19,6 +19,11 @@ class PMProcessStepStatus extends Model
     protected $table = 'process_step_statuses';
     protected $fillable = ['process_step_id', 'status_code', 'status_name', 'message', 'alias'];
 
+    public function setAliasAttribute($value)
+    {
+        $this->attributes['alias'] = str_replace(' ', '_', $value);
+    }
+
     public function process_step()
     {
         return $this->belongsTo(PMProcessStep::class, 'process_step_id');

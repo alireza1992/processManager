@@ -11,6 +11,7 @@
                 <th width="1%">ردیف</th>
                 <th>نام</th>
                 <th>نام مستعار</th>
+                <th>توضیحات</th>
                 <th>مرحله فرایند</th>
                 <th>نوع</th>
                 <th>عملیات</th>
@@ -20,8 +21,9 @@
                 <tr>
 
                     <td>{{($process_step_variables->currentPage() - 1 ) * ($process_step_variables->perPage() ) + $loop->iteration}}</td>
-                    <td>{!! $item->status_name !!}</td>
+                    <td>{!! $item->name !!}</td>
                     <td>{!! $item->alias !!}</td>
+                    <td>{!! $item->description !!}</td>
                     <td>{!! $item->process_step->name !!}</td>
                     <td>{!! $item->type !!}</td>
                     <td>

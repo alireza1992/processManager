@@ -31,7 +31,7 @@ class ProcessStepStatusController extends Controller
     {
 
 
-        $process_steps = $this->processStepStatusServices->paginate($request);
+        $process_step_statuses = $this->processStepStatusServices->paginate($request);
 
         return view('processmanager::process-step-status.index', compact('process_step_statuses'));
     }
@@ -39,8 +39,7 @@ class ProcessStepStatusController extends Controller
     public function create()
     {
         $process_steps = $this->processStepServices->getPluck();
-        $groups = $this->groups->pluck('name', 'id');
-        return view('processmanager::process-step-status.create', compact('processes', 'groups'));
+        return view('processmanager::process-step-status.create', compact('process_steps'));
     }
 
     public function store(Request $request)
@@ -53,9 +52,8 @@ class ProcessStepStatusController extends Controller
     public function edit($id)
     {
         $process_step = $this->processStepStatusServices->find($id);
-        $processes = $this->processServices->get();
-        $groups = $this->groups->pluck('name', 'id');
-        return view('processmanager::process-step-status.edit', compact('process_step', 'groups', 'processes'));
+        $process_steps = $this->processStepServices->getPluck();
+        return view('processmanager::process-step-status.edit', compact('process_step', 'process_steps'));
     }
 
     public function update(Request $request, $id)

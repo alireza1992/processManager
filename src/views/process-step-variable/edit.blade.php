@@ -26,9 +26,9 @@
                 {!! $errors->first('alias','<span>:message</span>') !!}
             </div>
             <div class="label-input">
-                {!! Form::label('desc','Desc', ['class' => 'pull-right']) !!}
-                {{ Form::text('desc', old('desc'), ['required', 'data-parsley-trigger'=>'change']) }}
-                {!! $errors->first('desc','<span>:message</span>') !!}
+                {!! Form::label('description','Desc', ['class' => 'pull-right']) !!}
+                {{ Form::text('description', old('description'), ['required', 'data-parsley-trigger'=>'change']) }}
+                {!! $errors->first('description','<span>:message</span>') !!}
             </div>
             <div class="label-input">
                 {!! Form::label('process_step_id','Process Steps', ['class' => 'pull-right']) !!}

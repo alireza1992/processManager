@@ -18,7 +18,12 @@ class PMProcessStep extends Model
 
     use SoftDeletes;
     protected $table = 'process_steps';
-    protected $fillable = ['process_id', 'name', 'priority', 'alias', 'presenter_group_id', 'group_id'];
+    protected $fillable = ['process_id', 'name', 'priority', 'alias', 'presenter_group_id', 'group_id', 'group_mode'];
+
+    public function setAliasAttribute($value)
+    {
+        $this->attributes['alias'] = str_replace(' ', '_', $value);
+    }
 
     public function process()
     {

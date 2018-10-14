@@ -18,6 +18,10 @@ class PMProcess extends Model
     protected $fillable = ['name', 'alias', 'model'];
     use SoftDeletes;
 
+    public function setAliasAttribute($value)
+    {
+        $this->attributes['alias'] = str_replace(' ', '_', $value);
+    }
 
     public function steps()
     {
