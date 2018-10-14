@@ -16,9 +16,8 @@ use App\ProcessStepStatus;
 
 class Events
 {
-    public static function log($processAlias , $stepAlias , $stepStatusAlias , $objectId , $userId)
+    public static function log($processAlias, $stepAlias, $stepStatusAlias, $objectId, $userId)
     {
-
         $process = self::findProcess($processAlias);
         $processStep = self::findProcessStep($stepAlias, $process->id);
         $processStepStatus = self::findProcessStepStatus($stepStatusAlias, $processStep->id);
@@ -28,9 +27,7 @@ class Events
             'object_id' => $objectId,
             'user_id' => $userId
         ]);
-       return 'done';
-
-
+        return 'done';
     }
 
     /**
@@ -39,7 +36,7 @@ class Events
      */
     private static function findProcess($alias)
     {
-        return Process::where('alias',$alias)->first();
+        return Process::where('alias', $alias)->first();
     }
 
     /**
@@ -47,9 +44,9 @@ class Events
      * @param $processId
      * @return mixed
      */
-    private static function findProcessStep($stepAlias , $processId)
+    private static function findProcessStep($stepAlias, $processId)
     {
-        return ProcessStep::where(['process_id'=>$processId ,'alias' =>$stepAlias])->first();
+        return ProcessStep::where(['process_id' => $processId, 'alias' => $stepAlias])->first();
     }
 
     /**
@@ -57,9 +54,9 @@ class Events
      * @param $processStepId
      * @return mixed
      */
-    private static function findProcessStepStatus($stepStatusAlias , $processStepId)
+    private static function findProcessStepStatus($stepStatusAlias, $processStepId)
     {
-        return ProcessStepStatus::where(['process_step_id'=>$processStepId ,'alias' =>$stepStatusAlias])->first();
+        return ProcessStepStatus::where(['process_step_id' => $processStepId, 'alias' => $stepStatusAlias])->first();
     }
 
 }
