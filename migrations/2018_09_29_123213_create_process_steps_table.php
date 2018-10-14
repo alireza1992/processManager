@@ -20,7 +20,7 @@ class CreateProcessStepsTable extends Migration
             $table->tinyInteger('priority');
             $table->string('alias');
             $table->tinyInteger('presenter_group_id');
-            $table->tinyInteger('group_mode');
+            $table->tinyInteger('group_mode')->default(0);
             $table->softDeletes();
             $table->nullableTimestamps();
         });

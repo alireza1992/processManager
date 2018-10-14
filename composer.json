@@ -8,7 +8,9 @@
       "email": "alirezaamrollahi70@gmail.com"
     }
   ],
-  "require": {},
+  "require": {
+    "illuminate/support": "~5"
+  },
   "minimum-stability": "dev",
   "extra": {
     "laravel": {

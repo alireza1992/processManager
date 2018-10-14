@@ -16,7 +16,7 @@ class CreateProcessStepStatusesTable extends Migration
         Schema::create('process_step_statuses', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('process_step_id');
-            $table->tinyInteger('status_code');
+            $table->tinyInteger('status_code')->default(0);
             $table->string('status_name');
             $table->text('message');
             $table->string('alias');
