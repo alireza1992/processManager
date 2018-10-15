@@ -9,28 +9,26 @@
 namespace Alireza1992\ProcessManager;
 
 
-use App\Event;
-use App\Process;
-use App\ProcessStep;
-use App\ProcessStepStatus;
+use Alireza1992\ProcessManager\Models\PMEvent;
+use Alireza1992\ProcessManager\Models\PMProcess;
+use Alireza1992\ProcessManager\Models\PMProcessStep;
+use Alireza1992\ProcessManager\Models\PMProcessStepStatus;
+
 
 class Events
 {
-    public static function log($processAlias , $stepAlias , $stepStatusAlias , $objectId , $userId)
+    public static function log($processAlias, $stepAlias, $stepStatusAlias, $objectId, $userId)
     {
-
         $process = self::findProcess($processAlias);
         $processStep = self::findProcessStep($stepAlias, $process->id);
         $processStepStatus = self::findProcessStepStatus($stepStatusAlias, $processStep->id);
-        $insertEvent = Event::create([
+        $insertEvent = PMEvent::create([
             'process_step_id' => $processStep->id,
             'process_step_status_id' => $processStepStatus->id,
             'object_id' => $objectId,
             'user_id' => $userId
         ]);
-       return 'done';
-
-
+        return 'done';
     }
 
     /**
@@ -39,7 +37,7 @@ class Events
      */
     private static function findProcess($alias)
     {
-        return Process::where('alias',$alias)->first();
+        return PMProcess::where('alias', $alias)->first();
     }
 
     /**
@@ -47,9 +45,9 @@ class Events
      * @param $processId
      * @return mixed
      */
-    private static function findProcessStep($stepAlias , $processId)
+    private static function findProcessStep($stepAlias, $processId)
     {
-        return ProcessStep::where(['process_id'=>$processId ,'alias' =>$stepAlias])->first();
+        return PMProcessStep::where(['process_id' => $processId, 'alias' => $stepAlias])->first();
     }
 
     /**
@@ -57,9 +55,9 @@ class Events
      * @param $processStepId
      * @return mixed
      */
-    private static function findProcessStepStatus($stepStatusAlias , $processStepId)
+    private static function findProcessStepStatus($stepStatusAlias, $processStepId)
     {
-        return ProcessStepStatus::where(['process_step_id'=>$processStepId ,'alias' =>$stepStatusAlias])->first();
+        return PMProcessStepStatus::where(['process_step_id' => $processStepId, 'alias' => $stepStatusAlias])->first();
     }
 
 }
