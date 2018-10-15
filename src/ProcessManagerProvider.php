@@ -21,16 +21,18 @@ class ProcessManagerProvider extends ServiceProvider
         include __DIR__ . '/Models/PMProcessStep.php';
         include __DIR__ . '/Models/PMProcessStepStatus.php';
         include __DIR__ . '/Models/PMProcessStepVariable.php';
+        include __DIR__ . '/Exceptions/NotFound.php';
+
+
         $routeConfig = [
             'namespace' => 'Alireza1992\Processmanager\Controllers',
             'prefix' => 'admin/process-managers',
             'middleware' => ['web', 'admin'],
         ];
-        $this->getRouter()->group($routeConfig, function ($router) {
-//            $router->resource('process', 'ProcessController');
             $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
-
-        });
+//        $this->getRouter()->group($routeConfig, function ($router) {
+//           $router->resource('process', 'ProcessController');
+//        });
         $this->loadMigrationsFrom(__DIR__ . '/../migrations');
 
         // Publish a config file
