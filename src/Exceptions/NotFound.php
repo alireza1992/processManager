@@ -2,26 +2,27 @@
 
 namespace Alireza1992\ProcessManager;
 
-use Illuminate\Support\Facades\Log;
 use Mockery\Exception;
 
 class NotFound extends Exception
 {
 
-    public function processWasNotFound()
+    public static function processWasNotFound()
     {
-        dd('Process Was Not Found');
-//        return view('processmanager::errors.404');
+        return "Process Alias Was not found in the database";
+
     }
 
-    public function processStepWasNotFound()
+    public static function processStepWasNotFound()
     {
-        dd('Process Step Was Not Found');
+        return " Step Alias was not found in the database";
+
     }
 
-    public function processStepStatusWasNotFound()
+    public static function processStepStatusWasNotFound()
     {
-        dd('Process Step Status Was Not Found');
+        return "Process Step Status  was not found in the database";
+
     }
 
 }

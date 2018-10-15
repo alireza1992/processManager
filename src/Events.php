@@ -23,17 +23,17 @@ class Events
         $process = self::findProcess($processAlias);
         $processStep = self::findProcessStep($stepAlias, $process->id);
         $processStepStatus = self::findProcessStepStatus($stepStatusAlias, $processStep->id);
-         DB::transaction(function () use ($processStep, $processStepStatus, $userId, $objectId){ {
-          return  PMEvent::create([
-                 'process_step_id' => $processStep->id,
-                 'process_step_status_id' => $processStepStatus->id,
-                 'object_id' => $objectId,
-                 'user_id' => $userId
-             ]);
+        DB::transaction(function () use ($processStep, $processStepStatus, $userId, $objectId) {
+            {
+                return PMEvent::create([
+                    'process_step_id' => $processStep->id,
+                    'process_step_status_id' => $processStepStatus->id,
+                    'object_id' => $objectId,
+                    'user_id' => $userId
+                ]);
 
-         }});
-
-
+            }
+        });
     }
 
     /**
@@ -42,12 +42,10 @@ class Events
      */
     private static function findProcess($alias)
     {
-
-        if ($process=PMProcess::where('alias', $alias)->first()) {
+        if ($process = PMProcess::where('alias', $alias)->first()) {
             return $process;
         } else {
-            $e = new NotFound();
-           return $e->processWasNotFound();
+            throw new NotFound(NotFound::processWasNotFound());
         }
     }
 
@@ -58,13 +56,12 @@ class Events
      */
     private static function findProcessStep($stepAlias, $processId)
     {
-        if ($processStep=PMProcessStep::where(['process_id' => $processId, 'alias' => $stepAlias])->first()) {
+        if ($processStep = PMProcessStep::where(['process_id' => $processId, 'alias' => $stepAlias])->first()) {
             return $processStep;
         } else {
-            $e = new NotFound();
-            return $e->processStepWasNotFound();
-        }
+            throw new NotFound(NotFound::processStepWasNotFound());
 
+        }
     }
 
     /**
@@ -74,11 +71,11 @@ class Events
      */
     private static function findProcessStepStatus($stepStatusAlias, $processStepId)
     {
-        if ($processStepStatus=PMProcessStepStatus::where(['process_step_id' => $processStepId, 'alias' => $stepStatusAlias])->first()) {
+        if ($processStepStatus = PMProcessStepStatus::where(['process_step_id' => $processStepId, 'alias' => $stepStatusAlias])->first()) {
             return $processStepStatus;
         } else {
-            $e = new NotFound();
-            return $e->processStepStatusWasNotFound();
+            throw new NotFound(NotFound::processStepStatusWasNotFound());
+
         }
 
 
