@@ -1,6 +1,6 @@
 {
   "name": "alireza1992/processmanager",
-  "description": "This Package helps developers to work with Jalali Datetime class for Laravel Framework PHP",
+  "description": "Process Manager",
   "license": "MIT",
   "authors": [
     {
