@@ -9,14 +9,16 @@
 namespace Alireza1992\ProcessManager;
 
 
-use Alireza1992\ProcessManager\Models\PMProcess;
 use Illuminate\Support\ServiceProvider;
 
 class ProcessManagerProvider extends ServiceProvider
 {
 
+    protected $models = ['PMEvent', 'PMProcess', 'PMProcessStep', 'PMProcessStepStatus', 'PMProcessStepVariable'];
+
     public function boot()
     {
+<<<<<<< HEAD
         include __DIR__ . '/Models/PMProcess.php';
         include __DIR__ . '/Models/PMProcessStep.php';
         include __DIR__ . '/Models/PMProcessStepStatus.php';
@@ -34,6 +36,8 @@ class ProcessManagerProvider extends ServiceProvider
 //           $router->resource('process', 'ProcessController');
 //        });
         $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+=======
+>>>>>>> 0456fb42a904c5c8c649b73fa3ae34f21e3e8950
 
         // Publish a config file
         $configPath = __DIR__ . '/config/process-manager.php';
@@ -48,6 +52,17 @@ class ProcessManagerProvider extends ServiceProvider
             $viewPath => config('process-manager.resource-views'),
         ], 'views');
 
+        foreach ($this->models as $model) {
+            include __DIR__ . "/Models/{$model}.php";
+        }
+
+        $routeConfig = [
+            'namespace' => 'Alireza1992\Processmanager\Controllers',
+        ];
+        $this->getRouter()->group($routeConfig, function ($router) {
+            $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
+        });
+        $this->loadMigrationsFrom(__DIR__ . '/../migrations');
 
     }
 
@@ -61,7 +76,6 @@ class ProcessManagerProvider extends ServiceProvider
         return $this->app['router'];
     }
 
-
     public function register()
     {
 
@@ -69,10 +83,25 @@ class ProcessManagerProvider extends ServiceProvider
             return new Events();
         });
 
-        $this->app->bind('PMProcess', function () {
-            return new PMProcess();
-        });
+//        foreach ($this->models as $model) {
+//            $interface = 'Alireza1992\Processmanager\Contracts\\' . $model . '::class';
+//            $this->app->singleton($interface, function () {
+//                $modelName = 'Alireza1992\Processmanager\Models\\' . $model . '()';
+//                return new $modelName;
+//            });
+//        }
 
     }
+
+//
+//    /**
+//     * {@inheritdoc}
+//     */
+//    public function provides()
+//    {
+//        return [
+//            PMEvent::class,
+//        ];
+//    }
 
 }

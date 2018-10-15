@@ -8,13 +8,12 @@
 
 namespace Alireza1992\ProcessManager;
 
-
-use App\Event;
-use App\Process;
-use App\ProcessStep;
-use App\ProcessStepStatus;
 use Illuminate\Support\Facades\DB;
-use Mockery\Exception;
+use Alireza1992\ProcessManager\Models\PMEvent;
+use Alireza1992\ProcessManager\Models\PMProcess;
+use Alireza1992\ProcessManager\Models\PMProcessStep;
+use Alireza1992\ProcessManager\Models\PMProcessStepStatus;
+
 
 class Events
 {
@@ -25,13 +24,15 @@ class Events
         $processStep = self::findProcessStep($stepAlias, $process->id);
         $processStepStatus = self::findProcessStepStatus($stepStatusAlias, $processStep->id);
          DB::transaction(function () use ($processStep, $processStepStatus, $userId, $objectId){ {
-             Event::create([
+          return  PMEvent::create([
                  'process_step_id' => $processStep->id,
                  'process_step_status_id' => $processStepStatus->id,
                  'object_id' => $objectId,
                  'user_id' => $userId
              ]);
+
          }});
+
 
     }
 
@@ -42,7 +43,7 @@ class Events
     private static function findProcess($alias)
     {
 
-        if ($process=Process::where('alias', $alias)->first()) {
+        if ($process=PMProcess::where('alias', $alias)->first()) {
             return $process;
         } else {
             $e = new NotFound();
@@ -57,13 +58,12 @@ class Events
      */
     private static function findProcessStep($stepAlias, $processId)
     {
-        if ($processStep=ProcessStep::where(['process_id' => $processId, 'alias' => $stepAlias])->first()) {
+        if ($processStep=PMProcessStep::where(['process_id' => $processId, 'alias' => $stepAlias])->first()) {
             return $processStep;
         } else {
             $e = new NotFound();
             return $e->processStepWasNotFound();
         }
-
 
     }
 
@@ -74,12 +74,13 @@ class Events
      */
     private static function findProcessStepStatus($stepStatusAlias, $processStepId)
     {
-        if ($processStepStatus=ProcessStepStatus::where(['process_step_id' => $processStepId, 'alias' => $stepStatusAlias])->first()) {
+        if ($processStepStatus=PMProcessStepStatus::where(['process_step_id' => $processStepId, 'alias' => $stepStatusAlias])->first()) {
             return $processStepStatus;
         } else {
             $e = new NotFound();
             return $e->processStepStatusWasNotFound();
         }
+
 
     }
 

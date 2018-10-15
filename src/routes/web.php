@@ -15,9 +15,11 @@ Route::get('/start', function () {
 });
 
 Route::as('admin.process-managers.')
+    ->prefix('admin/process-managers')
+    ->middleware(['web', 'admin'])
     ->group(function () {
-        Route::resource('process','ProcessController');
-        Route::resource('process-step','ProcessStepController');
-        Route::resource('process-step-status','ProcessStepStatusController');
-        Route::resource('process-step-variable','ProcessStepVariableController');
+        Route::resource('process', 'ProcessController');
+        Route::resource('process-step', 'ProcessStepController');
+        Route::resource('process-step-status', 'ProcessStepStatusController');
+        Route::resource('process-step-variable', 'ProcessStepVariableController');
     });
