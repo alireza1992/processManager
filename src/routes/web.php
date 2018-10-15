@@ -11,7 +11,7 @@ Route::get('hello',
        dd('asd');});
 
 Route::get('/start', function () {
-    return \Alireza1992\ProcessManager\Events::log('stock-sheet-request', 'create-request', 'test', '1','10');
+    return \Alireza1992\ProcessManager\Events::log('request_stock_sheet', 'reception_result_view', 'observer_viewed', '1','10');
 });
 
 Route::as('admin.process-managers.')
