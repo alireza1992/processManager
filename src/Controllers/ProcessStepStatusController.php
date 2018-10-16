@@ -51,9 +51,9 @@ class ProcessStepStatusController extends Controller
 
     public function edit($id)
     {
-        $process_step = $this->processStepStatusServices->find($id);
+        $process_step_status = $this->processStepStatusServices->find($id);
         $process_steps = $this->processStepServices->getPluck();
-        return view('processmanager::process-step-status.edit', compact('process_step', 'process_steps'));
+        return view('processmanager::process-step-status.edit', compact('process_step_status', 'process_steps'));
     }
 
     public function update(Request $request, $id)
