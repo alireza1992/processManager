@@ -17,7 +17,6 @@ use Alireza1992\ProcessManager\Models\PMProcessStepStatus;
 
 class Events
 {
-
     public static function log($processAlias, $stepAlias, $stepStatusAlias, $objectId, $userId)
     {
         $process = self::findProcess($processAlias);

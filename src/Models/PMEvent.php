@@ -11,7 +11,6 @@ namespace Alireza1992\ProcessManager\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
 class PMEvent extends Model
 {
     protected $table = 'events';

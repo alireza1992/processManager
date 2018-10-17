@@ -18,7 +18,6 @@ class ProcessManagerProvider extends ServiceProvider
 
     public function boot()
     {
-
         // Publish a config file
         $configPath = __DIR__ . '/config/process-manager.php';
         $this->publishes([
@@ -31,10 +30,10 @@ class ProcessManagerProvider extends ServiceProvider
         $this->publishes([
             $viewPath => config('process-manager.resource-views'),
         ], 'views');
-
-        foreach ($this->models as $model) {
-            include __DIR__ . "/Models/{$model}.php";
-        }
+//
+//        foreach ($this->models as $model) {
+//            include __DIR__ . "/Models/{$model}.php";
+//        }
 
         $routeConfig = [
             'namespace' => 'Alireza1992\Processmanager\Controllers',
