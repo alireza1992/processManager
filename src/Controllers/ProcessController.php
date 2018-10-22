@@ -2,12 +2,10 @@
 
 namespace Alireza1992\ProcessManager\Controllers;
 
-//use App\Http\Controllers\Controller;
 use Alireza1992\ProcessManager\Models\PMProcess;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-//use Alireza1992\ProcessManager\models\PMProcess;
-//use Alireza1992\ProcessManager\Requests\ProcessRequest;
+
 use Illuminate\Routing\Controller as BaseController;
 
 class ProcessController extends Controller
@@ -29,8 +27,6 @@ class ProcessController extends Controller
 
     public function index(Request $request)
     {
-
-
         $processes = $this->processServices->paginate($request);
 
         return view('processmanager::process.index', compact('processes'));

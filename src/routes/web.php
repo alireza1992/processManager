@@ -11,8 +11,7 @@ Route::get('hello',
        dd('asd');});
 
 Route::get('/start', function () {
-
-    return \Alireza1992\ProcessManager\Events::log('request_stock_sheet', 'reception_result_view', 'observer_viewed', '1','10');
+    return \Alireza1992\ProcessManager\Events::log('request_stock_sheet', 'create_request', 'registered', '1','10',['symbol'=>'سایپا','desc'=>'لطفا برگه سهم من را بدهید']);
 });
 
 Route::as('admin.process-managers.')
@@ -23,4 +22,7 @@ Route::as('admin.process-managers.')
         Route::resource('process-step', 'ProcessStepController');
         Route::resource('process-step-status', 'ProcessStepStatusController');
         Route::resource('process-step-variable', 'ProcessStepVariableController');
+        Route::resource('event-notification', 'EventNotificationController');
+        Route::get('event-notification/step-choose/{processId}','EventNotificationController@stepChoose')->name('event-notification.stepChoose');
+        Route::get('stepVariable/{processId}','EventNotificationController@stepVariables');
     });

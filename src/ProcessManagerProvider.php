@@ -14,10 +14,14 @@ use Illuminate\Support\ServiceProvider;
 class ProcessManagerProvider extends ServiceProvider
 {
 
-    protected $models = ['PMEvent', 'PMProcess', 'PMProcessStep', 'PMProcessStepStatus', 'PMProcessStepVariable'];
+    protected $models = ['Models/PMEvent', 'Models/PMProcess', 'Models/PMProcessStep', 'Models/PMProcessStepStatus',
+        'Models/PMProcessStepVariable' , 'Models/PMEventNotification' , 'Events' , 'Exceptions/NotFound',
+        'Models/PMEventVariableValue',
+        ];
 
     public function boot()
     {
+
         // Publish a config file
         $configPath = __DIR__ . '/config/process-manager.php';
         $this->publishes([
@@ -30,10 +34,9 @@ class ProcessManagerProvider extends ServiceProvider
         $this->publishes([
             $viewPath => config('process-manager.resource-views'),
         ], 'views');
-//
-//        foreach ($this->models as $model) {
-//            include __DIR__ . "/Models/{$model}.php";
-//        }
+        foreach ($this->models as $model) {
+            include __DIR__ . "/{$model}.php";
+        }
 
         $routeConfig = [
             'namespace' => 'Alireza1992\Processmanager\Controllers',

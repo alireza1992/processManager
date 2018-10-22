@@ -46,6 +46,11 @@ class PMProcessStep extends Model
         return $this->hasMany(PMProcessStepVariable::class, 'process_step_id', 'id');
     }
 
+    public function notification()
+    {
+        return $this->belongsTo(PMEventNotification::class);
+    }
+
     public function getGroupModeNameAttribute()
     {
         return $this->group_mode == '0' ? 'ادمین' : 'کاربر';
@@ -89,4 +94,19 @@ class PMProcessStep extends Model
             return $query->orderBy('id', 'desc');
         })->paginate(20);
     }
+
+    /**
+     * @return string
+     */
+    public function getGroupNameAttribute()
+    {
+        switch ($this->group_name) {
+            case 0 :
+                return "ادمین";
+            case 1 :
+                return "کاربر";
+        }
+
+    }
+
 }

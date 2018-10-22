@@ -16,7 +16,7 @@ class CreateEventVariableValuesTable extends Migration
         Schema::create('event_variable_values', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('event_id');
-            $table->integer('variable_id');
+            $table->integer('process_step_variable_id');
             $table->string('value');
             $table->nullableTimestamps();
             $table->softDeletes();

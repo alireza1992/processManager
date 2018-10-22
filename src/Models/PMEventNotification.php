@@ -1,48 +1,39 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Unlimited
- * Date: 10/9/2018
- * Time: 9:21 AM
+ * User: alireza
+ * Date: 10/17/18
+ * Time: 3:11 PM
  */
-
 namespace Alireza1992\ProcessManager\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PMProcess extends Model
+class PMEventNotification extends Model
 {
-    protected $table = 'processes';
-    protected $fillable = ['name', 'alias', 'model'];
-    use SoftDeletes;
+    protected $table = 'event_notification';
+    protected $fillable = ['process_id', 'step_id', 'status_id', 'target', 'body'];
 
-    public function setAliasAttribute($value)
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function step()
     {
-        $this->attributes['alias'] = str_replace(' ', '_', $value);
+        return $this->hasOne(PMProcessStep::class, 'id', 'step_id');
     }
 
-    public function steps()
+    public function process()
     {
-        return $this->hasMany(PMProcessStep::class, 'process_id', 'id');
-    }
-
-    public function notification()
-    {
-        return $this->belongsTo(PMEventNotification::class);
+        return $this->hasOne(PMProcess::class, 'id', 'process_id');
     }
 
     public function getPluck()
     {
         return self::pluck('model', 'id');
     }
-
-    public function getAll()
-    {
-        return self::all();
-
-    }
+    
 
     public function store($data, $record_id = null)
     {
@@ -53,6 +44,7 @@ class PMProcess extends Model
         }
         $record->fill($data->all());
         $record->save();
+        return $record;
     }
 
     public function find($id)
@@ -63,7 +55,7 @@ class PMProcess extends Model
     public function paginate($data = null)
     {
         return self::when($data->filled('query'), function ($query) use ($data) {
-            return $query->where('name', 'LIKE', "%{$data['query']}%");
+            return $query->where('body', 'LIKE', "%{$data['query']}%");
         })->when($data->filled('sort'), function ($query) use ($data) {
             return $query->orderBy('id', $data['sort']);
         })->unless($data->filled('sort'), function ($query) use ($data) {
