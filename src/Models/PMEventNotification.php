@@ -5,7 +5,7 @@
  * Date: 10/17/18
  * Time: 3:11 PM
  */
-namespace Alireza1992\ProcessManager\Models;
+namespace Processmanager\Models;
 
 
 use Illuminate\Database\Eloquent\Model;

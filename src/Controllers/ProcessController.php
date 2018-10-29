@@ -1,8 +1,8 @@
 <?php
 
-namespace Alireza1992\ProcessManager\Controllers;
+namespace Processmanager\Controllers;
 
-use Alireza1992\ProcessManager\Models\PMProcess;
+use Processmanager\Models\PMProcess;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -29,12 +29,12 @@ class ProcessController extends Controller
     {
         $processes = $this->processServices->paginate($request);
 
-        return view('processmanager::process.index', compact('processes'));
+        return view('Processmanager::process.index', compact('processes'));
     }
 
     public function create()
     {
-        return view('processmanager::process.create');
+        return view('Processmanager::process.create');
     }
 
     public function store(Request $request)
@@ -47,7 +47,7 @@ class ProcessController extends Controller
     public function edit($id)
     {
         $process = $this->processServices->find($id);
-        return view('processmanager::process.edit', compact('process'));
+        return view('Processmanager::process.edit', compact('process'));
     }
 
     public function update(Request $request, $id)

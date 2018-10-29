@@ -6,7 +6,7 @@
  * Time: 1:38 PM
  */
 
-namespace Alireza1992\ProcessManager\Facades;
+namespace Processmanager\Facades;
 
 
 use Illuminate\Support\Facades\Facade;

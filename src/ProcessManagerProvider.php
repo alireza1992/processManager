@@ -6,7 +6,7 @@
  * Time: 4:43 PM
  */
 
-namespace Alireza1992\ProcessManager;
+namespace Processmanager;
 
 
 use Illuminate\Support\ServiceProvider;
@@ -29,7 +29,7 @@ class ProcessManagerProvider extends ServiceProvider
         ], 'config');
 
         $viewPath = __DIR__ . '/views';
-        $this->loadViewsFrom($viewPath, 'processmanager');
+        $this->loadViewsFrom($viewPath, 'Processmanager');
         //Publish views
         $this->publishes([
             $viewPath => config('process-manager.resource-views'),
@@ -39,7 +39,7 @@ class ProcessManagerProvider extends ServiceProvider
         }
 
         $routeConfig = [
-            'namespace' => 'Alireza1992\Processmanager\Controllers',
+            'namespace' => 'Processmanager\Controllers',
         ];
         $this->getRouter()->group($routeConfig, function ($router) {
             $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
@@ -66,9 +66,9 @@ class ProcessManagerProvider extends ServiceProvider
         });
 
 //        foreach ($this->models as $model) {
-//            $interface = 'Alireza1992\Processmanager\Contracts\\' . $model . '::class';
+//            $interface = 'Processmanager\Contracts\\' . $model . '::class';
 //            $this->app->singleton($interface, function () {
-//                $modelName = 'Alireza1992\Processmanager\Models\\' . $model . '()';
+//                $modelName = 'Processmanager\Models\\' . $model . '()';
 //                return new $modelName;
 //            });
 //        }

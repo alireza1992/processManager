@@ -11,20 +11,20 @@
   "require": {
     "illuminate/support": "~5"
   },
+  "autoload": {
+    "psr-4": {
+      "Processmanager\\": "src/"
+    }
+  },
   "minimum-stability": "dev",
   "extra": {
     "laravel": {
       "providers": [
-        "Alireza1992\\Processmanager\\ProcessManagerProvider"
+        "Processmanager\\ProcessManagerProvider"
       ],
       "aliases": {
-        "Events": "Alireza1992\\Processmanager\\Facades\\EventLogger"
+        "Events": "Processmanager\\Facades\\EventLogger"
       }
-    }
-  },
-  "autoload": {
-    "psr-4": {
-      "Alireza1992\\Processmanager\\": "src/"
     }
   }
 }

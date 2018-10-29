@@ -1,6 +1,6 @@
 <?php
 
-namespace Alireza1992\ProcessManager\Controllers;
+namespace Processmanager\Controllers;
 
 /**
  * Created by PhpStorm.
@@ -10,10 +10,10 @@ namespace Alireza1992\ProcessManager\Controllers;
  */
 use App\Http\Controllers\Controller;
 use Request;
-use Alireza1992\ProcessManager\Models\PMEventNotification;
-use Alireza1992\ProcessManager\Models\PMProcess;
-use Alireza1992\ProcessManager\Models\PMProcessStep;
-use Alireza1992\ProcessManager\Models\PMProcessStepVariable;
+use Processmanager\Models\PMEventNotification;
+use Processmanager\Models\PMProcess;
+use Processmanager\Models\PMProcessStep;
+use Processmanager\Models\PMProcessStepVariable;
 
 class EventNotificationController extends Controller
 {
@@ -40,7 +40,7 @@ class EventNotificationController extends Controller
     {
 
         $notifications = $this->eventNotificationService->paginate($request);
-        return view('processmanager::event-notification.index', compact('notifications'));
+        return view('Processmanager::event-notification.index', compact('notifications'));
     }
 
     /**
@@ -50,7 +50,7 @@ class EventNotificationController extends Controller
     public function create(PMProcess $PMProcess)
     {
         $processes = $PMProcess->orderByDesc('id')->pluck('name', 'id');
-        return view('processmanager::event-notification.create', compact('processes'));
+        return view('Processmanager::event-notification.create', compact('processes'));
     }
 
     /**
@@ -73,7 +73,7 @@ class EventNotificationController extends Controller
         $processSteps = PMProcessStep::with('group')->where('process_id', $processId)->orderBy('priority', 'asc');
         $pluck=$processSteps->pluck('name','id');
         $array= $processSteps->get();
-        return view('processmanager::event-notification.stepChoose', compact('array','pluck','processId'));
+        return view('Processmanager::event-notification.stepChoose', compact('array','pluck','processId'));
     }
 
     /**
@@ -94,7 +94,7 @@ class EventNotificationController extends Controller
     public function edit($id)
     {
         $process = $this->eventNotificationService->find($id);
-        return view('processmanager::process.edit', compact('process'));
+        return view('Processmanager::process.edit', compact('process'));
     }
 
     /**
