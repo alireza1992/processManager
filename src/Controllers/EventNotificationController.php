@@ -14,6 +14,7 @@ use Processmanager\Models\PMEventNotification;
 use Processmanager\Models\PMProcess;
 use Processmanager\Models\PMProcessStep;
 use Processmanager\Models\PMProcessStepVariable;
+use Processmanager\Models\NotificationParameters;
 
 class EventNotificationController extends Controller
 {
