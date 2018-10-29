@@ -6,12 +6,12 @@
  * Time: 4:20 PM
  */
 
-namespace Alireza1992\ProcessManager\Models;
+namespace ProcessManager\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use Alireza1992\ProcessManager\Models\PMEventNotification;
+use ProcessManager\Models\PMEventNotification;
 
 
 class NotificationParameters extends Model

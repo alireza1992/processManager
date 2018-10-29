@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Alireza1992\\Processmanager\\' => array($baseDir . '/src'),
+    'Processmanager\\' => array($baseDir . '/src'),
 );

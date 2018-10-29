@@ -6,7 +6,7 @@
  * Time: 1:44 PM
  */
 
-namespace Alireza1992\ProcessManager\Models;
+namespace ProcessManager\Models;
 
 
 class NotificationProcess
