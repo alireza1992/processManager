@@ -1,0 +1,30 @@
+{
+  "name": "alireza1992/processmanager",
+  "description": "Process Manager",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alireza Amrollahi",
+      "email": "alirezaamrollahi70@gmail.com"
+    }
+  ],
+  "require": {
+    "illuminate/support": "~5"
+  },
+  "minimum-stability": "dev",
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Alireza1992\\Processmanager\\ProcessManagerProvider"
+      ],
+      "aliases": {
+        "Events": "Alireza1992\\Processmanager\\Facades\\EventLogger"
+      }
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Alireza1992\\Processmanager\\": "src/"
+    }
+  }
+}
