@@ -42,7 +42,7 @@ class EventNotificationController extends Controller
     {
 
         $notifications = $this->eventNotificationService->paginate($request);
-        return view('processmanager::event-notification.index', compact('notifications'));
+        return view('Processmanager::event-notification.index', compact('notifications'));
     }
 
     /**
@@ -52,7 +52,7 @@ class EventNotificationController extends Controller
     public function create(PMProcess $PMProcess)
     {
         $processes = $PMProcess->orderByDesc('id')->pluck('name', 'id');
-        return view('processmanager::event-notification.create', compact('processes'));
+        return view('Processmanager::event-notification.create', compact('processes'));
     }
 
     /**
@@ -75,7 +75,7 @@ class EventNotificationController extends Controller
         $processSteps = PMProcessStep::with('group')->where('process_id', $processId)->orderBy('priority', 'asc');
         $pluck = $processSteps->pluck('name', 'id');
         $array = $processSteps->get();
-        return view('processmanager::event-notification.stepChoose', compact('array', 'pluck', 'processId', 'notificationId'));
+        return view('Processmanager::event-notification.stepChoose', compact('array', 'pluck', 'processId', 'notificationId'));
     }
 
     /**
@@ -89,14 +89,14 @@ class EventNotificationController extends Controller
         $availableVariables = $PMProcessStepVariable->with('process_step', 'process_step.statuses')->where('process_step_id', '<=', $request->id)->where('process_step_id', '>=', $processStep->id)->get();
         $stepAdmins = PMProcessStep::with('group')
             ->where('process_id', Request::segment(4))
-            ->where('presenter_group_id', '<=', $record->presenter_group_id)->where('presenter_group_id', '>=', $processStep->presenter_group_id)
+            ->where('presenter_group_id', '>=', $record->presenter_group_id)->where('presenter_group_id', '<=', $processStep->presenter_group_id)
             ->groupBy('presenter_group_id')
             ->get();
         $admins = \App\Models\Admin::all();
         $userGroups = \App\Models\Group::with('admins')->get();
 
 
-        return response()->json(view('processmanager::event-notification.conditions', compact('processStep', 'availableVariables', 'stepAdmins', 'record', 'userGroups', 'admins'))->render());
+        return response()->json(view('Processmanager::event-notification.conditions', compact('processStep', 'availableVariables', 'stepAdmins', 'record', 'userGroups', 'admins'))->render());
     }
 
     /**
@@ -106,7 +106,7 @@ class EventNotificationController extends Controller
     public function edit($id)
     {
         $process = $this->eventNotificationService->find($id);
-        return view('processmanager::process.edit', compact('process'));
+        return view('Processmanager::process.edit', compact('process'));
     }
 
     /**

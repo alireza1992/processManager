@@ -31,13 +31,13 @@ class ProcessStepVariableController extends Controller
 
         $process_step_variables = $this->processStepVariableServices->paginate($request);
 
-        return view('processmanager::process-step-variable.index', compact('process_step_variables'));
+        return view('Processmanager::process-step-variable.index', compact('process_step_variables'));
     }
 
     public function create()
     {
         $process_steps = $this->processStepServices->getPluck();
-        return view('processmanager::process-step-variable.create', compact('process_steps'));
+        return view('Processmanager::process-step-variable.create', compact('process_steps'));
     }
 
     public function store(Request $request)
@@ -51,7 +51,7 @@ class ProcessStepVariableController extends Controller
     {
         $process_step_variable = $this->processStepVariableServices->find($id);
         $process_steps = $this->processStepServices->getPluck();
-        return view('processmanager::process-step-variable.edit', compact('process_steps', 'process_step_variable'));
+        return view('Processmanager::process-step-variable.edit', compact('process_steps', 'process_step_variable'));
     }
 
     public function update(Request $request, $id)

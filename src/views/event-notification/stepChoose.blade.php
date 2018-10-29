@@ -57,7 +57,7 @@
         <input type="hidden" name="processId" value="{{$processId}}">
 
         <div class="conditions">
-        @include('processmanager::event-notification.conditions')
+        @include('Processmanager::event-notification.conditions')
         </div>
 
         {!! link_to_route('admin.process-managers.event-notification.index', 'انصراف', [], ['class' =>'btn btn-danger']) !!}
