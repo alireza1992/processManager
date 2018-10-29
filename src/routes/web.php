@@ -11,7 +11,7 @@ Route::get('hello',
        dd('asd');});
 
 Route::get('/start', function () {
-    return \Alireza1992\ProcessManager\Events::log('request_stock_sheet', 'create_request', 'registered', '1','10',['symbol'=>'سایپا','desc'=>'لطفا برگه سهم من را بدهید']);
+    return \Processmanager\Events::log('request_stock_sheet', 'create_request', 'registered', '1','10',['symbol'=>'سایپا','desc'=>'لطفا برگه سهم من را بدهید']);
 });
 
 Route::as('admin.process-managers.')

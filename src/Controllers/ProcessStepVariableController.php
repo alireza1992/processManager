@@ -1,9 +1,9 @@
 <?php
 
-namespace Alireza1992\ProcessManager\Controllers;
+namespace Processmanager\Controllers;
 
-use Alireza1992\ProcessManager\Models\PMProcessStep;
-use Alireza1992\ProcessManager\Models\PMProcessStepVariable;
+use Processmanager\Models\PMProcessStep;
+use Processmanager\Models\PMProcessStepVariable;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 

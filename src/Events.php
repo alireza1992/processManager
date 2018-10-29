@@ -6,28 +6,20 @@
  * Time: 1:45 PM
  */
 
-namespace Alireza1992\ProcessManager;
+namespace Processmanager;
 
 use Illuminate\Support\Facades\DB;
-use Alireza1992\ProcessManager\Exceptions\NotFound;
-use Alireza1992\ProcessManager\Models\PMEvent;
-use Alireza1992\ProcessManager\Models\PMProcess;
-use Alireza1992\ProcessManager\Models\PMProcessStep;
-use Alireza1992\ProcessManager\Models\PMProcessStepStatus;
-use Alireza1992\ProcessManager\Models\PMProcessStepVariable;
-use Alireza1992\ProcessManager\Models\PMEventVariableValue;
-use Alireza1992\ProcessManager\Models\NotificationProcess;
+use Processmanager\Models\PMEvent;
+use Processmanager\Models\PMProcess;
+use Processmanager\Models\PMProcessStep;
+use Processmanager\Models\PMProcessStepStatus;
+use Processmanager\Models\PMProcessStepVariable;
+use Processmanager\Models\PMEventVariableValue;
+
 
 class Events
 {
-    /**
-     * @param $processAlias
-     * @param $stepAlias
-     * @param $stepStatusAlias
-     * @param $objectId
-     * @param $userId
-     * @param $data
-     */
+
     public static function log($processAlias, $stepAlias, $stepStatusAlias, $objectId, $userId,$data)
     {
         $process = self::findProcess($processAlias);

@@ -1,6 +1,6 @@
 <?php
 
-namespace Alireza1992\ProcessManager\Exceptions;
+namespace Processmanager;
 
 use Mockery\Exception;
 

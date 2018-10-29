@@ -6,7 +6,7 @@
  * Time: 4:43 PM
  */
 
-namespace Alireza1992\ProcessManager;
+namespace Processmanager;
 
 
 use Illuminate\Support\ServiceProvider;
@@ -39,7 +39,7 @@ class ProcessManagerProvider extends ServiceProvider
         }
 
         $routeConfig = [
-            'namespace' => 'Alireza1992\Processmanager\Controllers',
+            'namespace' => 'Processmanager\Controllers',
         ];
         $this->getRouter()->group($routeConfig, function ($router) {
             $this->loadRoutesFrom(__DIR__ . '/routes/web.php');

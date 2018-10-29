@@ -6,7 +6,7 @@
  * Time: 10:05 AM
  */
 
-namespace Alireza1992\ProcessManager\Contracts;
+namespace Processmanager\Contracts;
 
 
 interface PMEvent

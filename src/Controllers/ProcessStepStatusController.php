@@ -1,10 +1,10 @@
 <?php
 
-namespace Alireza1992\ProcessManager\Controllers;
+namespace Processmanager\Controllers;
 
-use Alireza1992\ProcessManager\Models\PMProcess;
-use Alireza1992\ProcessManager\Models\PMProcessStep;
-use Alireza1992\ProcessManager\Models\PMProcessStepStatus;
+use Processmanager\Models\PMProcess;
+use Processmanager\Models\PMProcessStep;
+use Processmanager\Models\PMProcessStepStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Group;
 use Illuminate\Http\Request;

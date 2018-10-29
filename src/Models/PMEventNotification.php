@@ -5,7 +5,7 @@
  * Date: 10/17/18
  * Time: 3:11 PM
  */
-namespace Alireza1992\ProcessManager\Models;
+namespace Processmanager\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -45,6 +45,11 @@ class PMEventNotification extends Model
         $record->fill($data->all());
         $record->save();
         return $record;
+    }
+
+    public function find($id)
+    {
+        return self::findOrFail($id);
     }
 
     public function paginate($data = null)

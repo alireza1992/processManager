@@ -1,6 +1,6 @@
 <?php
 
-namespace Alireza1992\ProcessManager\Controllers;
+namespace Processmanager\Controllers;
 
 /**
  * Created by PhpStorm.
@@ -8,13 +8,12 @@ namespace Alireza1992\ProcessManager\Controllers;
  * Date: 10/17/18
  * Time: 3:09 PM
  */
-use Alireza1992\ProcessManager\Models\NotificationParameters;
 use App\Http\Controllers\Controller;
 use Request;
-use Alireza1992\ProcessManager\Models\PMEventNotification;
-use Alireza1992\ProcessManager\Models\PMProcess;
-use Alireza1992\ProcessManager\Models\PMProcessStep;
-use Alireza1992\ProcessManager\Models\PMProcessStepVariable;
+use Processmanager\Models\PMEventNotification;
+use Processmanager\Models\PMProcess;
+use Processmanager\Models\PMProcessStep;
+use Processmanager\Models\PMProcessStepVariable;
 
 class EventNotificationController extends Controller
 {

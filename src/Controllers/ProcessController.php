@@ -1,8 +1,8 @@
 <?php
 
-namespace Alireza1992\ProcessManager\Controllers;
+namespace Processmanager\Controllers;
 
-use Alireza1992\ProcessManager\Models\PMProcess;
+use Processmanager\Models\PMProcess;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
