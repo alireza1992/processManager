@@ -22,9 +22,9 @@ class NotificationParameters extends Model
      */
     public function notification($request)
     {
-        foreach ($request['processMode'] as $stepId => $modes) {
+        foreach ($request['steps'] as $stepId => $modes) {
         $record = new PMEventNotification();
-            $record->step_id =$stepId ;
+            $record->step_id =$modes ;
             $record->process_id =$request['processId'];
             $record->body = $request['body'];
             $record->status = $request['status'];
@@ -32,6 +32,7 @@ class NotificationParameters extends Model
 //      $request->target_count = ;
             $record->save();
         }
+        PMEventNotification::where('id',$request['notificationId'])->delete();
 
 
     }

@@ -33,7 +33,6 @@ class PMEventNotification extends Model
     {
         return self::pluck('model', 'id');
     }
-    
 
     public function store($data, $record_id = null)
     {
