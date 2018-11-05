@@ -23,18 +23,17 @@ class NotificationParameters extends Model
     public function notification($request)
     {
         foreach ($request['steps'] as $stepId => $modes) {
-        $record = new PMEventNotification();
-            $record->step_id =$modes ;
-            $record->process_id =$request['processId'];
+            $record = new PMEventNotification();
+            $record->step_id = $modes;
+            $record->process_id = $request['processId'];
             $record->body = $request['body'];
             $record->status = $request['status'];
-//      $request->log_count = ;
-//      $request->target_count = ;
+//          $request->log_count = ;
+//          $request->target_count = ;
             $record->save();
         }
-        PMEventNotification::where('id',$request['notificationId'])->delete();
-
-
+        $oldRecord=PMEventNotification::where('id', $request['notificationId'])->first();
+        $oldRecord->delete();
     }
 
     /**
@@ -114,16 +113,18 @@ class NotificationParameters extends Model
         }
     }
 
+    /**
+     * @param $request
+     */
     public function conditions($request)
     {
         foreach ($request['conditionStatus'] as $key => $item) {
-//            foreach ($modes as $mode) {
-                DB::table('event_notification_conditions')->insert([
-                    'notification_id' => $request['notificationId'],
-                    'status_id' => $item,
-                    'created_at' => Carbon::now()
-                ]);
-//            }
+            DB::table('event_notification_conditions')->insert([
+                'notification_id' => $request['notificationId'],
+                'status_id' => $item,
+                'created_at' => Carbon::now()
+            ]);
+
         }
     }
 

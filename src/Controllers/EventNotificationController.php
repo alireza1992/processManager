@@ -142,7 +142,7 @@ class EventNotificationController extends Controller
         if ($request->conditionStatus) {
             $this->notificationParameters->conditions($input);
         }
-
+        return redirect('admin/process-managers/event-notification');
 
     }
 }

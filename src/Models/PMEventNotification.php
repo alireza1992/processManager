@@ -24,16 +24,27 @@ class PMEventNotification extends Model
         return $this->hasOne(PMProcessStep::class, 'id', 'step_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function process()
     {
         return $this->hasOne(PMProcess::class, 'id', 'process_id');
     }
 
+    /**
+     * @return mixed
+     */
     public function getPluck()
     {
         return self::pluck('model', 'id');
     }
 
+    /**
+     * @param $data
+     * @param null $record_id
+     * @return PMEventNotification
+     */
     public function store($data, $record_id = null)
     {
         if (!empty($record_id)) {
@@ -46,11 +57,19 @@ class PMEventNotification extends Model
         return $record;
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function find($id)
     {
         return self::findOrFail($id);
     }
 
+    /**
+     * @param null $data
+     * @return mixed
+     */
     public function paginate($data = null)
     {
         return self::when($data->filled('query'), function ($query) use ($data) {
